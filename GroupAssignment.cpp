@@ -1,8 +1,8 @@
 // *******
 // Course: TCP1101 PROGRAMMING FUNDAMENTALS
 // Year: Trimester 1, 2022/23 (T2215)
-// Lab: TxxL
-// Names: Kalla Deveshwara Rao | Darwin A/L Radhakrishnan | Vimal Rich Selvam
+// Lab: T14L
+// Names: Kalla Deveshwara Rao A/L Rama Rao| Darwin A/L Radhakrishnan | Vimal Rich Selvam
 // IDs: 1211103169| 1211104430 | 1211104171
 // Emails: 1211103169@student.mmu.edu.my | 1211104430@student.mmu.edu.my | 1211104171@student.mmu.edu.my
 // Phones: 0142702915 | 01123676737 | 012-500 7716
@@ -47,8 +47,7 @@ int mainmenu(){
     cout << "|    2. Load Game                                |" << endl;
     cout << "|    3. Save Game                                |" << endl;
     cout << "|    4. Board Settings                           |" << endl;
-    cout << "|    5. Settings                                 |" << endl;
-    cout << "|    6. Exit                                     |" << endl;
+    cout << "|    5. Exit                                     |" << endl;
     cout << "|                                                |" << endl;
     cout << "|================================================|" << endl;
 
@@ -124,11 +123,11 @@ vector<vector<string>> creategameboard()
     int row, column;
     row = 5;
     column = 9;
-    cout << "===========================================" << endl;
-    cout << " Do you want to change the number of rows?" << endl;
+    cout << "===============================================" << endl;
+    cout << " Do you want to change the number of rows Y/N ?" << endl;
     cout << " Row number    - > " << row << endl;
     cout << " Column number - > " << column << endl;
-    cout << "===========================================" << endl;
+    cout << "===============================================" << endl;
     cout << " Your Input - > ";
     string input;
     cin >> input;
@@ -156,10 +155,11 @@ vector<vector<string>> creategameboard()
         }
     }else{
         vector<vector<string>> board(row, vector<string>(column));
+        system("cls");
     }
     // This sets the board size.
     vector<vector<string>> board(row, vector<string>(column));
-
+    system("cls");
     // returns the board
     return board;
 }

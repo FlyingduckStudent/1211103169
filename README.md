@@ -1,19 +1,19 @@
 # Alien vs. Zombie
 
-Please introduce the game here.
+Alien Vs Zombie ~ By Kalla, Darwin, Vimal
 
-You may add one signature screenshot of your program here or above the title. Check out [this tutorial](https://www.digitalocean.com/community/tutorials/markdown-markdown-images) to learn how to do it.
+[Alien VS Zombie](Picture.png)
 
-Please provide the YouTube link to your [Video Demo](https://youtube.com).
+Enjoy 
+
+Please provide the YouTube link to your [Video Demo](https://youtu.be/niNF6hpjggQ).
 
 ## Compilation Instructions
 
-Provide instructions on how to compile your program, especially when it is non-trivial.
-
-For example:
+Just compile GroupAssignment.cpp Using g++ compiler. Alternatively you can try running the executable file "a.exe".
 
 ```
-g++ main.cpp folder1\code.cpp folder2\code.cpp ......
+g++ groupassignment.cpp
 ```
 
 ## User Manual
@@ -31,8 +31,8 @@ Please DO NOT change the Progress Log below. Leave it as it is.
 
 Please replace the following with your group members' names. 
 
-- Tony Stark
-- Steve Rogers
-- Dr. Strange
+- Kalla Deveshwara Rao A/L Rama Rao
+- Darwin A/L Radhakrishnan
+- Vimal Rich Selvam
 
 

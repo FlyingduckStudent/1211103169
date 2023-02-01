@@ -29,6 +29,7 @@ List all the features completed.
 5. Setting Zombie Attributes
 6. Alien Creation
 7. Setting Alien Pos and Attributes
+11. Quit Function
 
 ### To Do
 
@@ -37,33 +38,33 @@ List all the features not yet done. Remove this section if there is no incomplet
 8. Alien Control
 9. Save Function
 10. Load Function
-11. Quit Function
+
 
 ## Additional Features
 
 1. Error Handling (Partially Done)
-2. Audio / Music
-3. Game Score
+2. Audio / Music (Later)
+3. Game Score (Later)
 
 ## Contributions
 
 ### Kalla Deveshwara Rao A/L Rama Rao
-#    1. Zombie Attributes
-#    2. Zombie Creation
-#    3. Zombie Random Spawn
-#    4. Mostly Zombie related stuff
+    1. Zombie Attributes
+    2. Zombie Creation
+    3. Zombie Random Spawn
+    4. Mostly Zombie related stuff
 
 ### Vimal Rich Selvam
-#    1.Gameboard Creation
-#    2.Game Object Creation
-#    3.Error Handling
-#    4.Mostly Board stuff
+    1.Gameboard Creation
+    2.Game Object Creation
+    3.Error Handling
+    4.Mostly Board stuff
 
 ### Darwin A/L Radhakrishnan
-#   1. Alien Movement
-#    2. Alien Creation
-#    3. Alien Position
-#    4. Mostly Alien Related
+    1. Alien Movement
+    2. Alien Creation
+    3. Alien Position
+    4. Mostly Alien Related
 
 ## Problems Encountered & Solutions
 

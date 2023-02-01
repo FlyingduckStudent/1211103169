@@ -6,7 +6,7 @@ Alien Vs Zombie ~ By Kalla, Darwin, Vimal
 
 Enjoy 
 
-Please provide the YouTube link to your [Video Demo](https://youtu.be/niNF6hpjggQ).
+[Video Demo](https://youtu.be/niNF6hpjggQ).
 
 ## Compilation Instructions
 

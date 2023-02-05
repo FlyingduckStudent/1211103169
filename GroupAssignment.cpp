@@ -333,9 +333,8 @@ void alienmove(vector<vector<string>> &board, vector<Zombies> &zombies)
 
     // clears the screen from all the previous output
     system("cls");
-    cout << "Enter a direction to move the alien (up,down,left,right,q):" << endl;
     // Im assuming vimal will put something here
-    // cout << "Type ctrl for game controls \n \n";
+    cout << "Type help for game controls \n \n";
     displayboard(board);
 
     cout << "  " << endl;

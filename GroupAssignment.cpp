@@ -350,8 +350,9 @@ void alienmove(vector<vector<string>> &board, vector<Zombies> &zombies)
 
         // The > and < symbols are to keep it from going out of bounds. The dot is to leave trails. The code will stop working once we type in 'q'
         cin >> direction;
+        system("cls");
         if (direction == "up")
-        {   system("cls");
+        {
             if (alienRow > 0)
             {
                 board[alienRow][alienCol] = '.';
@@ -359,7 +360,7 @@ void alienmove(vector<vector<string>> &board, vector<Zombies> &zombies)
             }
         }
         else if (direction == "left")
-        {   system("cls");
+        {
             if (alienCol > 0)
             {
                 board[alienRow][alienCol] = '.';
@@ -367,7 +368,7 @@ void alienmove(vector<vector<string>> &board, vector<Zombies> &zombies)
             }
         }
         else if (direction == "down")
-        {   system("cls");
+        {
             if (alienRow < row - 1)
             {
                 board[alienRow][alienCol] = '.';
@@ -375,7 +376,7 @@ void alienmove(vector<vector<string>> &board, vector<Zombies> &zombies)
             }
         }
         else if (direction == "right")
-        {   system("cls");
+        {
             if (alienCol < column - 1)
             {
                 board[alienRow][alienCol] = '.';
@@ -399,7 +400,7 @@ void alienmove(vector<vector<string>> &board, vector<Zombies> &zombies)
         }
 
          else if (direction == "help")
-        {   system("cls");
+        {
             cout << "|-------------------------------------------------------|" << endl;
             cout << "|     Command    |            Description               |" << endl;
             cout << "|-------------------------------------------------------|" << endl;

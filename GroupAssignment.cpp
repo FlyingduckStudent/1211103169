@@ -345,6 +345,7 @@ void alienmove(vector<vector<string>> &board, vector<Zombies> &zombies)
     {
         // Need to put the controls under while loop so that we can do it multiple times
         string direction;
+        char confirm;
         cout << "Enter a direction to move the alien (up,down,left,right,help):";
 
         // The > and < symbols are to keep it from going out of bounds. The dot is to leave trails. The code will stop working once we type in 'q'
@@ -384,7 +385,17 @@ void alienmove(vector<vector<string>> &board, vector<Zombies> &zombies)
 
         else if (direction == "quit")
         {
-            break;
+            cout << "Are you sure you wish to quit the game? Enter y/n. " << endl;
+            cin >> confirm;
+            if (confirm == 'y')
+            {
+                exit(0);
+            }
+
+            else if (confirm == 'n')
+            {
+                system("cls");
+            }
         }
 
          else if (direction == "help")

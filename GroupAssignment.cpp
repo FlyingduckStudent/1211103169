@@ -333,8 +333,6 @@ void alienmove(vector<vector<string>> &board, vector<Zombies> &zombies)
 
     // clears the screen from all the previous output
     system("cls");
-    // Im assuming vimal will put something here
-    cout << "Type help for game controls \n \n";
     displayboard(board);
 
     cout << "  " << endl;
@@ -347,12 +345,12 @@ void alienmove(vector<vector<string>> &board, vector<Zombies> &zombies)
     {
         // Need to put the controls under while loop so that we can do it multiple times
         string direction;
-        cout << "Enter a direction to move the alien (up,down,left,right,q):";
+        cout << "Enter a direction to move the alien (up,down,left,right,help):";
 
         // The > and < symbols are to keep it from going out of bounds. The dot is to leave trails. The code will stop working once we type in 'q'
         cin >> direction;
         if (direction == "up")
-        {
+        {   system("cls");
             if (alienRow > 0)
             {
                 board[alienRow][alienCol] = '.';
@@ -360,7 +358,7 @@ void alienmove(vector<vector<string>> &board, vector<Zombies> &zombies)
             }
         }
         else if (direction == "left")
-        {
+        {   system("cls");
             if (alienCol > 0)
             {
                 board[alienRow][alienCol] = '.';
@@ -368,7 +366,7 @@ void alienmove(vector<vector<string>> &board, vector<Zombies> &zombies)
             }
         }
         else if (direction == "down")
-        {
+        {   system("cls");
             if (alienRow < row - 1)
             {
                 board[alienRow][alienCol] = '.';
@@ -376,7 +374,7 @@ void alienmove(vector<vector<string>> &board, vector<Zombies> &zombies)
             }
         }
         else if (direction == "right")
-        {
+        {   system("cls");
             if (alienCol < column - 1)
             {
                 board[alienRow][alienCol] = '.';
@@ -384,16 +382,45 @@ void alienmove(vector<vector<string>> &board, vector<Zombies> &zombies)
             }
         }
 
-        else if (direction == "q")
+        else if (direction == "quit")
         {
             break;
+        }
+
+         else if (direction == "help")
+        {   system("cls");
+            cout << "|-------------------------------------------------------|" << endl;
+            cout << "|     Command    |            Description               |" << endl;
+            cout << "|-------------------------------------------------------|" << endl;
+            cout << "|       up       |   Alien to move up.                  |" << endl;
+            cout << "|----------------|--------------------------------------|" << endl;
+            cout << "|      down      |   Alien to move down.                |" << endl;
+            cout << "|----------------|--------------------------------------|" << endl;
+            cout << "|      left      |   Alien to move left.                |" << endl;
+            cout << "|----------------|--------------------------------------|" << endl;
+            cout << "|      right     |   Alien to move right.               |" << endl;
+            cout << "|----------------|--------------------------------------|" << endl;
+            cout << "|      arrow     |   Switch the direction of an arrow   |" << endl;
+            cout << "|                |   object in the game board.          |" << endl;
+            cout << "|----------------|--------------------------------------|" << endl;
+            cout << "|      help      |   List and describe commands that    |" << endl;
+            cout << "|                |   the player can use in the game.    |" << endl;
+            cout << "|----------------|--------------------------------------|" << endl;
+            cout << "|      save      |   Save the current game to a file.   |" << endl;
+            cout << "|----------------|--------------------------------------|" << endl;
+            cout << "|      load      |   Load a saved game from a file.     |" << endl;
+            cout << "|----------------|--------------------------------------|" << endl;
+            cout << "|      quit      |   Quit the game while still in play. |" << endl;
+            cout << "|----------------|--------------------------------------|\n" << endl;
+
+
         }
 
         // Updated alien postion from the selection statement
         board[alienRow][alienCol] = 'A';
 
         // clears the output so that it looks clean for the next output
-        system("cls");
+        //system("cls");
 
         // By now you should know what this does
         displayboard(board);

@@ -5,7 +5,7 @@
 // Names: Kalla Deveshwara Rao A/L Rama Rao| Darwin A/L Radhakrishnan | Vimal Rich Selvam
 // IDs: 1211103169| 1211104430 | 1211104171
 // Emails: 1211103169@student.mmu.edu.my | 1211104430@student.mmu.edu.my | 1211104171@student.mmu.edu.my
-// Phones: 0142702915 | 01123676737 | 012-500 7716
+// Phones: 0142702915 | 01123676737 | 0125007716
 // *******
 
 #include <iostream>
@@ -19,16 +19,30 @@ using namespace std;
 
 int alienRow, alienCol;
 
-void errorhandling(){
+// When you pass a function by reference, it means it will not make multiple copies and will just edit the main function itself.
+// This is a struct. You can use struct as a datatype. You can declare variables like normal using struct.
+// Using struct makes it very easy to organize our zombies we can them like arrays. calling method for their name :  nameofthevariable[indexnumber].number
+struct Zombies
+{
+    string number;
+    int life;
+    int range;
+    int attack;
+    string coordinates;
+};
+
+void errorhandling()
+{
 
     // When there is an error in the input stream (cin), it will be flagged as an error. So to clear that we will need to use cin.clear()
     cin.clear();
     // cin.clear() clears the alert, but it does not clear the remaining value inside, so this down here clears data for you
-    cin.ignore(INT_MAX,'\n');
+    cin.ignore(INT_MAX, '\n');
 }
 
-//For now only to run the game nothing much
-int mainmenu(){
+// For now only to run the game nothing much
+int mainmenu()
+{
     // for now its alien vs zombie
     cout << "|================================================|" << endl;
     cout << "|        A          V             V    ZZZZZZZZZ |" << endl;
@@ -51,49 +65,47 @@ int mainmenu(){
     cout << "|                                                |" << endl;
     cout << "|================================================|" << endl;
 
-    while(true){
+    while (true)
+    {
         cout << "Your input -> ";
         int userinput;
         cin >> userinput;
-        //test
+        // test
 
-        //this is when the input stream enters error state
-        if(cin.fail()){
-            cout << " Wrong Input ! "; 
+        // this is when the input stream enters error state
+        if (cin.fail())
+        {
+            cout << " Wrong Input ! ";
             errorhandling();
             continue;
         }
 
-        if(userinput <= 6 && userinput >= 0){
+        if (userinput <= 6 && userinput >= 0)
+        {
             cout << string(100, '\n');
             return userinput;
-        }else{
+        }
+        else
+        {
             cout << "Wrong Input !";
             continue;
         }
     }
 }
 
-// When you pass a function by reference, it means it will not make multiple copies and will just edit the main function itself.
-// This is a struct. You can use struct as a datatype. You can declare variables like normal using struct.
-// Using struct makes it very easy to organize our zombies we can them like arrays. calling method for their name :  nameofthevariable[indexnumber].number
-struct Zombies
-{
-    string number;
-    int life;
-    int range;
-    int attack;
-};
-
 // function to draw border
 void draw_border(int column)
 {
-    cout << "*";
+    cout << "|";
     for (int j = 0; j < column; ++j)
     {
-        cout << "--";
+        cout << "----+";
+        if (j == column - 2)
+        {
+            cout << "----|" << endl;
+            break;
+        }
     }
-    cout << "*" << endl;
 }
 
 // This function is to display the board. It takes in reference variable, so it doesnt make any copy of the function
@@ -106,14 +118,49 @@ void displayboard(vector<vector<string>> &board)
     // this will output the values in the vector i - for rows j for column. They take in index values of the vector and output it
     for (int i = 0; i < row; i++)
     {
+        cout << setw(2) << (row - i);
         draw_border(column);
         for (int j = 0; j < column; j++)
+
         {
-            cout << "|" << board[i][j] << "";
+            cout << "  | " << board[i][j] << "";
         }
-        cout << "|" << endl;
+        cout << "  |" << endl;
     }
-    draw_border(column);
+
+    // this is to print lowest border of the map
+    cout << "  |";
+    for (int j = 0; j < column; ++j)
+    {
+        cout << "----+";
+        if (j == column - 2)
+        {
+            cout << "----|" << endl;
+            break;
+        }
+    }
+
+    // display column number
+    cout << "   ";
+
+    for (int j = 0; j < column; ++j)
+    {
+        int digit = (j + 1) / 10;
+        cout << "    ";
+        if (digit == 0)
+            cout << " ";
+        else
+            cout << digit;
+    }
+    cout << endl
+         << "   ";
+
+    for (int j = 0; j < column; ++j)
+    {
+        cout << "    " << (j + 1) % 10;
+    }
+    cout << endl
+         << endl;
 }
 
 // This is to create gameboard using vector. It takes in user input for row and columnd. The first box is row second is column
@@ -123,15 +170,17 @@ vector<vector<string>> creategameboard()
     int row, column;
     row = 5;
     column = 9;
+    system("cls");
     cout << "===============================================" << endl;
     cout << " Do you want to change the number of rows Y/N ?" << endl;
     cout << " Row number    - > " << row << endl;
     cout << " Column number - > " << column << endl;
     cout << "===============================================" << endl;
-    cout << " Your Input - > ";
+    cout << "Your Input - > ";
     string input;
     cin >> input;
-    if(input == "Y"){
+    if (input == "Y")
+    {
         while (true)
         {
             cout << "Enter the number of rows: ";
@@ -153,7 +202,9 @@ vector<vector<string>> creategameboard()
             }
             cout << "Please enter an odd number." << endl;
         }
-    }else{
+    }
+    else
+    {
         vector<vector<string>> board(row, vector<string>(column));
         system("cls");
     }
@@ -198,10 +249,10 @@ vector<Zombies> zombie(vector<vector<string>> &board)
     // Since all rows should have the same number of columns, you can just use size() here
     int row = board.size();
     int column = board[0].size();
-
     int amount;
+    system("cls");
     cout << "How many zombies?" << endl;
-    cout << " Your Input - > ";
+    cout << "Your Input - > ";
     cin >> amount;
 
     // Preset amount of hp to choose from
@@ -221,7 +272,8 @@ vector<Zombies> zombie(vector<vector<string>> &board)
     for (int i = 0; i < amount; i++)
     {
         // this is to name the zombies
-        zombie[i].number = "Z" + to_string(i);
+        // zombie[i].number = "Z" + to_string(i); Only use this for debugging purposes!
+        zombie[i].number = to_string(i);
         // this is to set the hp using the limit above
         zombie[i].life = liferange[rand() % 5];
         // this is to set the range using the limit above
@@ -229,24 +281,27 @@ vector<Zombies> zombie(vector<vector<string>> &board)
         // this is to set the damage using the limit above
         zombie[i].attack = damagerange[rand() % 4];
     }
-
+    // this is to prevent zombies replacing zombies in the gameboard
+    vector<vector<string>> unallowedcoordinates(row, vector<string>(column));
     // It will randomly generate zombies based on the amount the user inputs
     for (int i = 0; i < amount; ++i)
     {
         // This will randomize the location of zombies by making use of the rand() func. It will also limit the row and column size to user input, so it wont generate a random number that is too big
         int random1 = rand() % row;
         int random2 = rand() % column;
-
         // this will check if got z in the string or not. if dont have means it will proceed with the zombie placement
-        if (board[random1][random2] != "Z" || board[random1][random2].find('Z') == string::npos)
+        if (!(unallowedcoordinates[random1][random2] == "Taken !"))
         {
             board[random1][random2] = zombie[i].number;
+            zombie[i].coordinates = to_string(random1) + " " + to_string(random2);
         }
         else
         {
             // if got z means it will do minus one the decrement so that it can run the loop again
             i--;
         }
+        // Once the thing is done placing the zombies, it will place the coordinates in the unallowedcoordinates vector so that in the for loop it will be able to prevent from using the same coordinate
+        unallowedcoordinates[random1][random2] = "Taken !";
     }
     // displaying the board
     return zombie;
@@ -258,7 +313,7 @@ void displayzombie(vector<Zombies> &zombie)
 {
     for (int i = 0; i < zombie.size(); i++)
     {
-        cout << "Zombie " + zombie[i].number + " : Life " << zombie[i].life << ", Attack " << zombie[i].attack << ", Range " << zombie[i].range << endl;
+        cout << "Zombie " + zombie[i].number + " : Life " << zombie[i].life << ", Attack " << zombie[i].attack << ", Range " << zombie[i].range << ", Coordinates " << zombie[i].coordinates << endl;
     }
 }
 
@@ -348,16 +403,13 @@ void alienmove(vector<vector<string>> &board, vector<Zombies> &zombies)
     }
 }
 
-
-
-
 int main()
 {
     // Sets the seed random by using our time. So random will be extra random
     srand(time(NULL));
     // 2d vector variable to start the program
     int userinput = mainmenu();
-    //only one main menu
+    // only one main menu
 
     if (userinput == 1)
     {
@@ -368,10 +420,9 @@ int main()
         vector<Zombies> zombies = zombie(game);
         // It takes the new zombie values and the board and uses it in the alienmove function
         alienmove(game, zombies);
-    }else if(userinput == 6)
+    }
+    else if (userinput == 6)
     {
         exit(0);
     }
-    
 }
-

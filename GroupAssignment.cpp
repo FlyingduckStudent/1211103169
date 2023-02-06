@@ -7,7 +7,7 @@
 // Emails: 1211103169@student.mmu.edu.my | 1211104430@student.mmu.edu.my | 1211104171@student.mmu.edu.my
 // Phones: 0142702915 | 01123676737 | 0125007716
 // *******
-
+#include <limits.h>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -168,8 +168,8 @@ vector<vector<string>> creategameboard()
 {
 
     int row, column;
-    row = 5;
-    column = 9;
+    row = 7;
+    column = 13;
     system("cls");
     cout << "===============================================" << endl;
     cout << " Do you want to change the number of rows Y/N ?" << endl;
@@ -179,7 +179,7 @@ vector<vector<string>> creategameboard()
     cout << "Your Input - > ";
     string input;
     cin >> input;
-    if (input == "Y")
+    if (input == "Y" || input == "y")
     {
         while (true)
         {
@@ -251,10 +251,12 @@ vector<Zombies> zombie(vector<vector<string>> &board)
     int column = board[0].size();
     int amount;
     system("cls");
+
     cout << "How many zombies?" << endl;
     cout << "Your Input - > ";
     cin >> amount;
 
+    system("cls");
     // Preset amount of hp to choose from
     int liferange[5] = {100, 150, 200, 250, 300};
     // Preset amount of range to choose from. It compares both of them, and sees which one is higher, then it will take te largest.
@@ -317,9 +319,34 @@ void displayzombie(vector<Zombies> &zombie)
     }
 }
 
+bool checksurrounding(vector<vector<string>> &board, int powerrow,int powercolumn)
+{
+
+    if (board[powerrow][powercolumn] == "^" || board[powerrow][powercolumn] == "<" || board[powerrow][powercolumn] == ">" || board[powerrow][powercolumn] == "v")
+    {
+        return true;
+    }
+    return false;
+}
+
+string objectmove(string &object){
+    if(object == "<"){
+        return "left";
+    }else if(object == ">"){
+        return "right";
+    }else if(object == "^"){
+        return "up";
+    }else if(object == "v"){
+        return "down";
+    }else{
+        return "false";
+    }
+}
+
 // This is for the alien to move. It takes both board and zombie by reference
 void alienmove(vector<vector<string>> &board, vector<Zombies> &zombies)
 {
+
     // board and row size from the refernced board variable
     int row = board.size();
     int column = board[0].size();
@@ -328,79 +355,200 @@ void alienmove(vector<vector<string>> &board, vector<Zombies> &zombies)
     int maxHealth = 100;
     int currentHealth = 80;
     int attack = 0;
-
-    // Setting the struct vector zombies and 2d vector game
-
-    // clears the screen from all the previous output
-    system("cls");
-    displayboard(board);
-
-    cout << "  " << endl;
-
-    // Display zombie and alien
-    cout << "Alien : Life " << currentHealth << ", Attack " << attack << endl;
-    displayzombie(zombies);
+    // This is to let the Alien move by itself for just 1 key to move
+    // Continue Up
+    string movement, object;
 
     while (true)
     {
-        // Need to put the controls under while loop so that we can do it multiple times
-        string direction;
-        char confirm;
-        cout << "Enter a direction to move the alien (up,down,left,right,help):";
 
-        // The > and < symbols are to keep it from going out of bounds. The dot is to leave trails. The code will stop working once we type in 'q'
-        cin >> direction;
         system("cls");
-        if (direction == "up")
-        {
-            if (alienRow > 0)
-            {
-                board[alienRow][alienCol] = '.';
-                alienRow--;
-            }
-        }
-        else if (direction == "left")
-        {
-            if (alienCol > 0)
-            {
-                board[alienRow][alienCol] = '.';
-                alienCol--;
-            }
-        }
-        else if (direction == "down")
-        {
-            if (alienRow < row - 1)
-            {
-                board[alienRow][alienCol] = '.';
-                alienRow++;
-            }
-        }
-        else if (direction == "right")
-        {
-            if (alienCol < column - 1)
-            {
-                board[alienRow][alienCol] = '.';
-                alienCol++;
-            }
+        // clears the screen from all the previous output
+        displayboard(board);
+        // Display zombie and alien
+        cout << "Alien : Life " << currentHealth << ", Attack " << attack << endl;
+        displayzombie(zombies);
+
+        cout << "For this turn where do you wanna move ? (up,down,left,right,help,quit) \n- >";
+        if(objectmove(object) == "false"){
+            cin >> movement;
+        }else if(objectmove(object) != "false"){
+            movement = objectmove(object);
+            object = "nothing";
         }
 
-        else if (direction == "quit")
-        {
-            cout << "Are you sure you wish to quit the game? Enter y/n. " << endl;
-            cin >> confirm;
-            if (confirm == 'y')
-            {
-                exit(0);
-            }
 
-            else if (confirm == 'n')
+        if (movement == "up")
+        {
+            while (true)
             {
+                string cont;
+                cout << "Press C to continue ..." << endl;
+                cin >> cont;
+                if (checksurrounding(board, alienRow - 1, alienCol) == false)
+                {
+                    if (cont == "C")
+                    {
+                        if (alienCol > 0)
+                        {
+                            board[alienRow][alienCol] = '.';
+                            alienRow--;
+                        }
+                    }
+
+                } else if (checksurrounding(board, alienRow - 1, alienCol) == true){
+
+                    object = board[alienRow-1][alienCol];
+                    board[alienRow][alienCol] = '.';
+                    alienRow--;
+                    break;
+                }
+                // Updated alien postion from the selection statement
+                board[alienRow][alienCol] = 'A';
+
+                // clears the output so that it looks clean for the next output
                 system("cls");
+
+                // By now you should know what this does
+                displayboard(board);
+                cout << "Alien : Life " << currentHealth << ", Attack " << attack << endl;
+                displayzombie(zombies);
+                if (alienRow < 1)
+                {
+                    break;
+                };
             }
         }
-
-         else if (direction == "help")
+        // Continues Left
+        else if (movement == "left")
         {
+            while (true)
+            {
+                string cont;
+                cout << "Press C to continue ..." << endl;
+                cin >> cont;
+                if (checksurrounding(board, alienRow, alienCol-1) == false)
+                {
+                    if (cont == "C")
+                    {
+                        if (alienCol > 0)
+                        {
+                            board[alienRow][alienCol] = '.';
+                            alienCol--;
+                        }
+                    }
+
+                } else if (checksurrounding(board, alienRow, alienCol-1) == true){
+
+                    object = board[alienRow][alienCol-1];
+                    board[alienRow][alienCol] = '.';
+                    alienRow--;
+                    break;
+                }
+                // Updated alien postion from the selection statement
+                board[alienRow][alienCol] = 'A';
+
+                // clears the output so that it looks clean for the next output
+                system("cls");
+
+                // By now you should know what this does
+                displayboard(board);
+                cout << "Alien : Life " << currentHealth << ", Attack " << attack << endl;
+                displayzombie(zombies);
+                if (alienCol < 1)
+                {
+                    break;
+                };
+            }
+        }
+        // Continues Down
+        else if (movement == "down")
+        {
+            while (true)
+            {
+                string cont;
+                cout << "Press C to continue ..." << endl;
+                cin >> cont;
+                if (checksurrounding(board, alienRow + 1, alienCol) == false)
+                {
+                    if (cont == "C")
+                    {
+                        if (alienCol > 0)
+                        {
+                            board[alienRow][alienCol] = '.';
+                            alienRow++;
+                        }
+                    }
+
+                } else if (checksurrounding(board, alienRow + 1, alienCol) == true){
+
+                    object = board[alienRow+1][alienCol];
+                    board[alienRow][alienCol] = '.';
+                    alienRow--;
+                    break;
+                }
+                // Updated alien postion from the selection statement
+                board[alienRow][alienCol] = 'A';
+
+                // clears the output so that it looks clean for the next output
+                system("cls");
+
+                // By now you should know what this does
+                displayboard(board);
+                cout << "Alien : Life " << currentHealth << ", Attack " << attack << endl;
+                displayzombie(zombies);
+                if (alienRow > row - 2)
+                {
+                    break;
+                }
+            }
+        }
+        // Continue Right
+        else if (movement == "right")
+        {
+            while (true)
+            {
+                string cont;
+                cout << "Press C to continue ..." << endl;
+                cin >> cont;
+                if (checksurrounding(board, alienRow, alienCol+1) == false)
+                {
+                    if (cont == "C")
+                    {
+                        if (alienCol > 0)
+                        {
+                            board[alienRow][alienCol] = '.';
+                            alienRow--;
+                        }
+                    }
+
+                } else if (checksurrounding(board, alienRow, alienCol+1) == true){
+
+                    object = board[alienRow][alienCol+1];
+                    board[alienRow][alienCol] = '.';
+                    alienCol++;
+                    break;
+                }
+                // Updated alien postion from the selection statement
+                board[alienRow][alienCol] = 'A';
+
+                // clears the output so that it looks clean for the next output
+                system("cls");
+
+                // By now you should know what this does
+                displayboard(board);
+                cout << "Alien : Life " << currentHealth << ", Attack " << attack << endl;
+                displayzombie(zombies);
+                if (alienCol > column - 2)
+                {
+                    break;
+                }
+            }
+        }
+        // to provide the user with control helps idk
+        else if (movement == "help")
+        {
+            cout << endl;
             cout << "|-------------------------------------------------------|" << endl;
             cout << "|     Command    |            Description               |" << endl;
             cout << "|-------------------------------------------------------|" << endl;
@@ -423,21 +571,25 @@ void alienmove(vector<vector<string>> &board, vector<Zombies> &zombies)
             cout << "|      load      |   Load a saved game from a file.     |" << endl;
             cout << "|----------------|--------------------------------------|" << endl;
             cout << "|      quit      |   Quit the game while still in play. |" << endl;
-            cout << "|----------------|--------------------------------------|\n" << endl;
-
-
+            cout << "|----------------|--------------------------------------|\n"
+                 << endl;
         }
+        // to quit
+        else if (movement == "quit")
+        {
+            char confirm;
+            cout << "Are you sure you wish to quit the game? Enter y/n. " << endl;
+            cin >> confirm;
+            if (confirm == 'y')
+            {
+                exit(0);
+            }
 
-        // Updated alien postion from the selection statement
-        board[alienRow][alienCol] = 'A';
-
-        // clears the output so that it looks clean for the next output
-        //system("cls");
-
-        // By now you should know what this does
-        displayboard(board);
-        cout << "Alien : Life " << currentHealth << ", Attack " << attack << endl;
-        displayzombie(zombies);
+            else if (confirm == 'n')
+            {
+                system("cls");
+            }
+        }
     }
 }
 

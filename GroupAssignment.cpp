@@ -442,7 +442,7 @@ void alienmove(vector<vector<string>> &board, vector<Zombies> &zombies)
 
                     object = board[alienRow][alienCol-1];
                     board[alienRow][alienCol] = '.';
-                    alienRow--;
+                    alienCol--;
                     break;
                 }
                 // Updated alien postion from the selection statement
@@ -484,7 +484,7 @@ void alienmove(vector<vector<string>> &board, vector<Zombies> &zombies)
 
                     object = board[alienRow+1][alienCol];
                     board[alienRow][alienCol] = '.';
-                    alienRow--;
+                    alienRow++;
                     break;
                 }
                 // Updated alien postion from the selection statement
@@ -518,7 +518,7 @@ void alienmove(vector<vector<string>> &board, vector<Zombies> &zombies)
                         if (alienCol > 0)
                         {
                             board[alienRow][alienCol] = '.';
-                            alienRow--;
+                            alienCol++;
                         }
                     }
 

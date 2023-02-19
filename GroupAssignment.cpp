@@ -953,6 +953,7 @@ bool alienmove(vector<vector<string>> &board, vector<Zombies> &zombies)
                 {
                     system("cls");
                     attack = 0;
+                    trailtoitem(row,column,board);
                     displayboard(board);
                     movezombie(board, zombies);
                     zombieattack(board, zombies, currentHealth);
@@ -1040,6 +1041,7 @@ bool alienmove(vector<vector<string>> &board, vector<Zombies> &zombies)
                 {
                     system("cls");
                     attack = 0;
+                    trailtoitem(row,column,board);
                     displayboard(board);
                     movezombie(board, zombies);
                     zombieattack(board, zombies, currentHealth);
@@ -1126,6 +1128,7 @@ bool alienmove(vector<vector<string>> &board, vector<Zombies> &zombies)
                 {
                     system("cls");
                     attack = 0;
+                    trailtoitem(row,column,board);
                     displayboard(board);
                     movezombie(board, zombies);
                     zombieattack(board, zombies, currentHealth);
@@ -1204,6 +1207,7 @@ bool alienmove(vector<vector<string>> &board, vector<Zombies> &zombies)
                 {
                     system("cls");
                     attack = 0;
+                    trailtoitem(row,column,board);
                     displayboard(board);
                     movezombie(board, zombies);
                     zombieattack(board, zombies, currentHealth);
@@ -1373,6 +1377,7 @@ int main()
 
     while (true)
     {
+        currentHealth = 200;
         // 2d vector variable to start the program
         int userinput = mainmenu();
         // only one main menu
@@ -1387,7 +1392,7 @@ int main()
             bool run = alienmove(game, zombies);
             if (run == false)
             {
-                continue;
+                main();
             }
         }
         else if(userinput == 2)

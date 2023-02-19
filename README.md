@@ -2,23 +2,52 @@
 
 Alien Vs Zombie ~ By Kalla, Darwin, Vimal
 
-[Alien VS Zombie](Picture.png)
+[Alien VS Zombie]
 
-Enjoy 
+Part 1:
+[Video Demo](https://youtu.be/niNF6hpjggQ)
 
-[Video Demo](https://youtu.be/niNF6hpjggQ).
+Part 2:
+[Video Demo](https://www.youtube.com/watch?v=lejH1EOlQVI)
 
 ## Compilation Instructions
 
-Just compile GroupAssignment.cpp Using g++ compiler. Alternatively you can try running the executable file "a.exe".
+Please add " g++ -std=c++11 GroupAssignment.cpp -o GroupAssignment.exe -lwinmm " in the terminal to build it with the linker "-lwinmm" and run the program by using "./final.exe".
 
 ```
-g++ groupassignment.cpp
+g++ -std=c++11 GroupAssignment.cpp -o GroupAssignment.exe -lwinmm
+```
+
+```
+./GroupAssignment.exe
 ```
 
 ## User Manual
 
-Please provide the user manual on how to use your program.
+|-------------------------------------------------------|
+|     Command    |            Description               |
+|-------------------------------------------------------|
+|       up       |   Alien to move up.                  |
+|----------------|--------------------------------------|
+|      down      |   Alien to move down.                |
+|----------------|--------------------------------------|
+|      left      |   Alien to move left.                |
+|----------------|--------------------------------------|
+|      right     |   Alien to move right.               |
+|----------------|--------------------------------------|
+|      arrow     |   Switch the direction of an arrow   |
+|                |   object in the game board.          |
+|----------------|--------------------------------------|
+|      help      |   List and describe commands that    |
+|                |   the player can use in the game.    |
+|----------------|--------------------------------------|
+|      save      |   Save the current game to a file.   |
+|----------------|--------------------------------------|
+|      load      |   Load a saved game from a file.     |
+|----------------|--------------------------------------|
+|      quit      |   Quit the game while still in play. |
+|----------------|--------------------------------------|
+
 
 Please DO NOT change the Progress Log below. Leave it as it is.
 
@@ -28,8 +57,6 @@ Please DO NOT change the Progress Log below. Leave it as it is.
 - [Part 2](PART2.md)
 
 ## Contributors
-
-Please replace the following with your group members' names. 
 
 - Kalla Deveshwara Rao A/L Rama Rao
 - Darwin A/L Radhakrishnan
